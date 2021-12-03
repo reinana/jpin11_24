@@ -96,30 +96,49 @@ public class Item {
 
     // -----------------無名クラス--------------------------
     
-    public static Comparator<Item>getNameComparator() {
-        return new Comparator<Item>() {
+    // public static Comparator<Item>getNameComparator() {
+    //     return new Comparator<Item>() {
 
-            @Override
-            public int compare(Item a, Item b) {
+    //         @Override
+    //         public int compare(Item a, Item b) {
+    //             // StringクラスにあるcompareToメソッドを使う
+    //             return a.getName().compareTo(b.getName());
+    //         }        
+    //     };
+    // }
+
+    // public static Comparator<Item> getPriceComparator() {
+    //     return new Comparator<Item>() {
+
+    //         @Override
+    //         public int compare(Item a, Item b) {
+    //             if(a.getPrice() < b.getPrice()) {
+    //                 return -1;
+    //             }
+    //             if(b.getPrice() < a.getPrice()) {
+    //                 return 1;
+    //             }
+    //             return 0;
+    //         }        
+    //     };
+    // }
+
+    // -----------------ラムダ------------------------
+
+    public static Comparator<Item>getNameComparator() {
+        return (a, b) -> a.getName().compareTo(b.getName());
                 // StringクラスにあるcompareToメソッドを使う
-                return a.getName().compareTo(b.getName());
-            }        
-        };
     }
 
     public static Comparator<Item> getPriceComparator() {
-        return new Comparator<Item>() {
-
-            @Override
-            public int compare(Item a, Item b) {
-                if(a.getPrice() < b.getPrice()) {
-                    return -1;
-                }
-                if(b.getPrice() < a.getPrice()) {
-                    return 1;
-                }
-                return 0;
-            }        
+        return (a, b) -> {
+            if(a.getPrice() < b.getPrice()) {
+                return -1;
+            }
+            if(b.getPrice() < a.getPrice()) {
+                return 1;
+            }
+            return 0;        
         };
     }
     
