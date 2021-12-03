@@ -65,20 +65,50 @@ public class Item {
 
     // -------------ローカルクラスを作ろう--------------
 
-    public static Comparator<Item> getNameComparator() {
-        class ItemNameComparator implements Comparator<Item> {
+    // public static Comparator<Item> getNameComparator() {
+    //     class ItemNameComparator implements Comparator<Item> {
+
+    //         @Override
+    //         public int compare(Item a, Item b) {
+    //             // StringクラスにあるcompareToメソッドを使う
+    //             return a.getName().compareTo(b.getName());
+    //         }        
+    //     }
+    //     return new ItemNameComparator();
+    // }
+
+    // public static Comparator<Item> getPriceComparator() {
+    //     class ItemPriceComparator implements Comparator<Item> {
+
+    //         @Override
+    //         public int compare(Item a, Item b) {
+    //             if(a.getPrice() < b.getPrice()) {
+    //                 return -1;
+    //             }
+    //             if(b.getPrice() < a.getPrice()) {
+    //                 return 1;
+    //             }
+    //             return 0;
+    //         }        
+    //     }
+    //     return new ItemPriceComparator();
+    // }
+
+    // -----------------無名クラス--------------------------
+    
+    public static Comparator<Item>getNameComparator() {
+        return new Comparator<Item>() {
 
             @Override
             public int compare(Item a, Item b) {
                 // StringクラスにあるcompareToメソッドを使う
                 return a.getName().compareTo(b.getName());
             }        
-        }
-        return new ItemNameComparator();
+        };
     }
 
     public static Comparator<Item> getPriceComparator() {
-        class ItemPriceComparator implements Comparator<Item> {
+        return new Comparator<Item>() {
 
             @Override
             public int compare(Item a, Item b) {
@@ -90,10 +120,8 @@ public class Item {
                 }
                 return 0;
             }        
-        }
-        return new ItemPriceComparator();
+        };
     }
-    
     
 
 
