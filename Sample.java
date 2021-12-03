@@ -1,15 +1,35 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+
 public class Sample {
     public static void main(String[] args) {
                     //↓エンクロージングクラス
         // Test test = new Sample().new Inner();
-        // // インナークラスがstaticでないとnewしてnewする
+        // インナークラスがstaticでないとnewしてnewする
+        // SampleとInnerは同じクラス内にあるのでアクセスできる
         // test.execute();
 
-        Test test = new Inner(); // Innerクラスはstatic
-        test.execute();
+        // Test test = new Inner(); // Innerクラスはstatic
+        // test.execute();
 
         // Innerクラス単体で使いたいときはstatic
         // エンクロージングクラスと連動したいとき非static
+
+        // new Outer("hoge").new Inner().execute();
+
+        List<Item> list = new ArrayList<>();
+        list.add(new Item("apple",100));
+        list.add(new Item("banana",80));
+        list.add(new Item("orange",120));
+
+        // Collections.sort(list); Itemクラスに並び替えメソッドがあるときComparableを実装してないといけない
+        // Collections.sort(list, new Item.ItemNameComparator()); // 引数2個ノトキ、Comparatorを実装したクラスを引数に入れる
+        Collections.sort(list, Item.getPriceComparator());
+        for(Item item: list) {
+            System.out.println(item);
+        }
 
     }
 
