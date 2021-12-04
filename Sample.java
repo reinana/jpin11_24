@@ -31,13 +31,23 @@ public class Sample {
         //     System.out.println(item);
         // }
 
-        List<String> list = new ArrayList<>() {
-            {//初期化ブロック コンストラクタより先に実行
-                super.add("A");
-                super.add("B");
-                super.add("C");
-            }
-        }
+        // List<String> list = new ArrayList<>() {
+        //     {//初期化ブロック コンストラクタより先に実行
+        //         super.add("A");
+        //         super.add("B");
+        //         super.add("C");
+        //     }
+        // }
+
+        // ---------------------------------------
+        // Testインターフェースにあるexecuteメソッドの定義を後から決めるのがラムダ
+        // Test test = () -> System.out.println("test");
+        // Testインターフェースのexecuteメソッドを呼び出した時に実行したい内容
+        // 書いたタイミングじゃなくて呼び出したタイミングで実行
+        // test.execute();
+
+        // ------------------------------------------
+
 
     }
 
