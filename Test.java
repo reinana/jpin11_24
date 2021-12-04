@@ -1,4 +1,4 @@
-@FunctionalInterface アノテーション 抽象メソッドが二個以上あるとエラー
+@FunctionalInterface //アノテーション 抽象メソッドが二個以上あるとエラー
 public interface Test {
     void execute();
     // void hoge(); // 抽象メソッドはダメ

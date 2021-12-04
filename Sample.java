@@ -47,7 +47,8 @@ public class Sample {
         // test.execute();
 
         // ------------------------------------------
-
+            List<String> list = List.of("A","B","C","D","E");
+            list.forEach(str -> System.out.println(str));
 
     }
 
