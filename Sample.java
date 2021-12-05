@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 
@@ -72,16 +73,19 @@ public class Sample {
         // test(s); // 毎回新しいインスタンスが作られる参照が違う
 
         // ポリモーフィズムの場合は使いまわせない
-        Test t = new TestImpl();
-        test2(t);
-        test2(t);
-        test2(t);
-        test2(t); // 同じ参照を返す インスタンスは1つ
+        // Test t = new TestImpl();
+        // test2(t);
+        // test2(t);
+        // test2(t);
+        // test2(t); // 同じ参照を返す インスタンスは1つ
 
-        test2(new TestImpl());
-        test2(new TestImpl());
-        test2(new TestImpl());
-        test2(new TestImpl()); //こうするとFactoryになる
+        // test2(new TestImpl());
+        // test2(new TestImpl());
+        // test2(new TestImpl());
+        // test2(new TestImpl()); //こうするとFactoryになる
+
+        Function<String, String> f = str -> str.toUpperCase();
+        System.out.println(f.apply("a"));
 
 
 
