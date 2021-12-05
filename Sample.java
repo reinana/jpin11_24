@@ -78,6 +78,11 @@ public class Sample {
         test2(t);
         test2(t); // 同じ参照を返す インスタンスは1つ
 
+        test2(new TestImpl());
+        test2(new TestImpl());
+        test2(new TestImpl());
+        test2(new TestImpl()); //こうするとFactoryになる
+
 
 
     }
