@@ -3,6 +3,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 
@@ -84,9 +85,22 @@ public class Sample {
         // test2(new TestImpl());
         // test2(new TestImpl()); //こうするとFactoryになる
 
-        Function<String, String> f = str -> str.toUpperCase();
-        System.out.println(f.apply("a"));
+        // Function<String, String> f = str -> str.toUpperCase();
+        // System.out.println(f.apply("a"));
 
+        // Predicate<Item> p = item -> item.getPrice() >= 100;
+        
+        List<Item> list = List.of(
+                    new Item("apple",100),
+                    new Item("banana",80),
+                    new Item("orange",120)
+        );
+
+        // list.stream().filter(p).forEach(System.out::println);
+        // こっちの方が主流の書き方pは使いまわさないから
+        list.stream()
+            .filter(item -> item.getPrice() >= 100)
+            .forEach(System.out::println);
 
 
     }
@@ -95,7 +109,6 @@ public class Sample {
         t.execute();
         System.out.println(t);
     }
-
     private static void test(Supplier<Test> s) {
         Test t = s.get();
         t.execute();
