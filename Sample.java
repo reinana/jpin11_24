@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
 
 
 public class Sample {
@@ -48,8 +49,20 @@ public class Sample {
 
         // ------------------------------------------
             List<String> list = List.of("A","B","C","D","E");
-            list.forEach(str -> System.out.println(str));
+            // Consumer<String> c = str -> System.out.println(str);
+            // Consumer<String> c = System.out::println; // メソッドの中身をacceptに代入している
+            // list.forEach(c);
+            // メソッド参照
+            list.forEach(System.out::println);
+            // 予め定義されているコンシューマー型を使うならメソッド参照
+            // その時その時で定義したいならラムダ式
+            list.forEach(Sample::test); 
 
+
+    }
+    // Consumer型のメソッド引数を1つ受け取って消費する
+    private static void test(String str) {
+        System.out.println("test" + str);
     }
 
     private static class Inner implements Test{
