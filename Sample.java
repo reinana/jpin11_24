@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 
 public class Sample {
@@ -48,18 +49,50 @@ public class Sample {
         // test.execute();
 
         // ------------------------------------------
-            List<String> list = List.of("A","B","C","D","E");
+            // List<String> list = List.of("A","B","C","D","E");
             // Consumer<String> c = str -> System.out.println(str);
             // Consumer<String> c = System.out::println; // メソッドの中身をacceptに代入している
             // list.forEach(c);
             // メソッド参照
-            list.forEach(System.out::println);
+            // list.forEach(System.out::println);
             // 予め定義されているコンシューマー型を使うならメソッド参照
             // その時その時で定義したいならラムダ式
-            list.forEach(Sample::test); 
+            // list.forEach(Sample::test); 
+        
+        // Supplier<String> s = () -> "hoge";
+        // System.out.println(s.get());
+        
+        // Factoryのかわりに使えるラムダ
+        // TestImplはTestの実装だからTest型で使える
+        // sを使いまわせる
+        // Supplier<Test> s = () -> new TestImpl();
+        // test(() -> new TestImpl());
+        // test(s);
+        // test(s);
+        // test(s); // 毎回新しいインスタンスが作られる参照が違う
+
+        // ポリモーフィズムの場合は使いまわせない
+        Test t = new TestImpl();
+        test2(t);
+        test2(t);
+        test2(t);
+        test2(t); // 同じ参照を返す インスタンスは1つ
+
 
 
     }
+
+    private static void test2(Test t) {
+        t.execute();
+        System.out.println(t);
+    }
+
+    private static void test(Supplier<Test> s) {
+        Test t = s.get();
+        t.execute();
+        System.out.println(t);
+    }
+
     // Consumer型のメソッド引数を1つ受け取って消費する
     private static void test(String str) {
         System.out.println("test" + str);
